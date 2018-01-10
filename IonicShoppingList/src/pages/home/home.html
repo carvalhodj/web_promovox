@@ -19,7 +19,12 @@
     </ion-list-header>
     <ion-item *ngFor="let item of shoppingList$ | async" detail-push
     navPush="EditShoppingItemPage" [navParams]="{item: item}">
-      {{ item.name }}
+
+      <ion-thumbnail item-start>
+        <img src="{{ item.image }}">
+      </ion-thumbnail>
+      <h2>{{ item.name }}</h2>
+      <p>Quantidade: {{ item.quantity }} • R$ {{ item.price }}</p>
     </ion-item>
   </ion-list>
 </ion-content>
