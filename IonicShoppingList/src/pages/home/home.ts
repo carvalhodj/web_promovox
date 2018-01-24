@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
-import { NavController, IonicPage } from 'ionic-angular';
+import { NavController, IonicPage, NavParams} from 'ionic-angular';
 import { ShoppingListService } from './../../services/shopping-list/shopping-list.service';
 import { Observable } from 'rxjs/Observable';
+import { User } from "./../../models/user/user";
 import { Item } from './../../models/item/item.model';
 
 @IonicPage()
@@ -12,8 +13,11 @@ import { Item } from './../../models/item/item.model';
 export class HomePage {
 
   shoppingList$: Observable<Item[]>;
+  user = {} as User;
 
-  constructor(public navCtrl: NavController, private shopping: ShoppingListService) {
+
+  constructor(public navParams: NavParams ,navCtrl: NavController, private shopping: ShoppingListService) {
+    this.user = this.navParams.get('user');
     this.shoppingList$ = this.shopping.getShoppingList() // DB List
                                       .snapshotChanges() // Key and value pairs
                                       .map(

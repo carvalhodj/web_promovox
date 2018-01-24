@@ -16,23 +16,31 @@
 <ion-content padding>
 
   <ion-item>
-    <ion-label>Name</ion-label>
+            <div *ngIf="item.image">
+               <img [src]="item.image">
+            </div>
+              </ion-item>
+
+  <ion-item>
+    <ion-label stacked>Nome do produto</ion-label>
     <ion-input [(ngModel)]="item.name"></ion-input>
   </ion-item>
 
   <ion-item>
-    <ion-label>Quantity</ion-label>
+    <ion-label stacked>Quantity</ion-label>
     <ion-input type="number" [(ngModel)]="item.quantity"></ion-input>
   </ion-item>
 
   <ion-item>
-    <ion-label>Price</ion-label>
-    <ion-input type="number" [(ngModel)]="item.price"></ion-input>
+    <ion-label stacked>Preço(R$)</ion-label>
+    <ion-input type="number" [(ngModel)]="item.price"  placeholder="EX: 2.50(dois reais e 50 centavos)"></ion-input>
   </ion-item>
 
-  <button ion-button block clear (click)="saveItem(item)">Save</button>
+
+
+  <button ion-button block clear (click)="saveItem(item)">Atualizar</button>
 
   <button ion-button block clear color="danger"
-  (click)="removeItem(item)">Delete</button>
+  (click)="removeItem(item)">Deletar</button>
 
 </ion-content>
