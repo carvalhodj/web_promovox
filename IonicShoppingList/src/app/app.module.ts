@@ -11,10 +11,11 @@ import { MyApp } from './app.component';
 import { FIREBASE_CREDENTIALS } from './firebase.credentials';
 import { ShoppingListService } from './../services/shopping-list/shopping-list.service';
 import { ToastService } from './../services/toast/toast.service';
+import { Camera } from '@ionic-native/camera';
 
 @NgModule({
   declarations: [
-    MyApp,
+    MyApp
 
   ],
   imports: [
@@ -26,12 +27,13 @@ import { ToastService } from './../services/toast/toast.service';
   ],
   bootstrap: [IonicApp],
   entryComponents: [
-    MyApp,
+    MyApp
 
   ],
   providers: [
     StatusBar,
     SplashScreen,
+    Camera,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     ShoppingListService,
     ToastService

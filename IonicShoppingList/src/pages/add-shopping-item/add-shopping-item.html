@@ -12,22 +12,31 @@
 
 </ion-header>
 
+<ion-content class="home">
+  <ion-card>
+    <ion-card-content>
+      Hello World, this is my camera app
 
-<ion-content padding>
+      <button ion-button (click)="takePhoto()">Take Photo</button>
+
+      Latest Picture:
+      <img src="{{ urldownload }}" *ngIf="urldownload"/>
+    </ion-card-content>
+  </ion-card>
 
   <ion-item>
     <ion-label>Name</ion-label>
-    <ion-input [(ngModel)]="item.name"></ion-input>
+    <ion-input [(ngModel)]="nameProduct"></ion-input>
   </ion-item>
 
   <ion-item>
     <ion-label>Quantity</ion-label>
-    <ion-input type="number" [(ngModel)]="item.quantity"></ion-input>
+    <ion-input type="number" [(ngModel)]="quantityProduct"></ion-input>
   </ion-item>
 
   <ion-item>
     <ion-label>Price</ion-label>
-    <ion-input type="number" [(ngModel)]="item.price"></ion-input>
+    <ion-input type="number" [(ngModel)]="priceProduct"></ion-input>
   </ion-item>
 
   <button ion-button block clear (click)="addItem(item)">Add</button>
