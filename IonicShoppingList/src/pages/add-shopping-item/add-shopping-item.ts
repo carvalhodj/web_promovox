@@ -8,6 +8,7 @@ import { ShoppingListService } from './../../services/shopping-list/shopping-lis
 import { ToastService } from './../../services/toast/toast.service';
 
 import moment from 'moment';
+import { AlertController } from 'ionic-angular';
 
 /**
  * Generated class for the AddShoppingItemPage page.
@@ -27,6 +28,7 @@ export class AddShoppingItemPage {
   public nameProduct: string;
   public priceProduct: number;
   public quantityProduct: number;
+  public pictures: firebase.storage.Reference;
 
   item: Item = {
     name: '',
@@ -39,22 +41,34 @@ export class AddShoppingItemPage {
     public navCtrl: NavController,
     public navParams: NavParams,
     private shopping: ShoppingListService,
-    private toast: ToastService) {
+    private toast: ToastService,
+   private alertCtrl: AlertController) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad AddShoppingItemPage');
   }
 
+
+
   addItem(item: Item) {
-    this.shopping.addItem({
-      name: this.nameProduct,
-      quantity: this.quantityProduct,
-      price: this.priceProduct,
-      image: this.urldownload}).then(ref => {
-      this.toast.show(`${this.nameProduct} added!`);
-      this.navCtrl.setRoot('HomePage', { key: ref.key });
-    })
+    alert("Stat function");
+    this.pictures.putString(this.base64Image, 'data_url').then((savedPicture) =>{
+      this.pictures.getDownloadURL().then((url) => {this.urldownload = url;
+      this.shopping.addItem({
+        name: this.nameProduct,
+        quantity: this.quantityProduct,
+        price: this.priceProduct,
+        image: this.urldownload}).then(ref => {
+        this.toast.show(`${this.nameProduct} added!`);
+        this.navCtrl.setRoot('HomePage', { key: ref.key });
+      })})
+    }
+
+  )
+
+
+
   }
 
   async takePhoto() {
@@ -68,18 +82,12 @@ export class AddShoppingItemPage {
         mediaType: this.camera.MediaType.PICTURE
       }
 
-  
-
       const result = await this.camera.getPicture(options);
 
       this.base64Image = `data:image/jpeg;base64,${result}`;
-      const pictures = storage().ref('pictures/myPhoto');
-      pictures.putString(this.base64Image, 'data_url');
 
-      pictures.getDownloadURL().then((url) => {this.urldownload = url});
-
-
-
+      var name = 'pictures/myPhoto'+moment().toString()
+      this.pictures = storage().ref(name);
 
     }
     catch (e) {
