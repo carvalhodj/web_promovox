@@ -7,7 +7,7 @@
 <ion-header>
 
   <ion-navbar color="secondary">
-    <ion-title>AddShoppingItem</ion-title>
+    <ion-title>Adicionar oferta</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -25,20 +25,20 @@
   </ion-card>
 
   <ion-item>
-    <ion-label>Name</ion-label>
+    <ion-label>Nome do Produto</ion-label>
     <ion-input [(ngModel)]="nameProduct"></ion-input>
   </ion-item>
 
   <ion-item>
-    <ion-label>Quantity</ion-label>
+    <ion-label>Limite de quantidade (0 se não houver)</ion-label>
     <ion-input type="number" [(ngModel)]="quantityProduct"></ion-input>
   </ion-item>
 
   <ion-item>
-    <ion-label>Price</ion-label>
+    <ion-label>Preço unitário (R$)</ion-label>
     <ion-input type="number" [(ngModel)]="priceProduct"></ion-input>
   </ion-item>
 
-  <button ion-button block clear (click)="addItem(item)">Add</button>
+  <button ion-button block clear (click)="addItem(item)">Confirmar</button>
 
 </ion-content>
