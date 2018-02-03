@@ -9,6 +9,7 @@ import { ToastService } from './../../services/toast/toast.service';
 
 import moment from 'moment';
 import { AlertController } from 'ionic-angular';
+import { LoadingController } from 'ionic-angular';
 
 /**
  * Generated class for the AddShoppingItemPage page.
@@ -42,7 +43,8 @@ export class AddShoppingItemPage {
     public navParams: NavParams,
     private shopping: ShoppingListService,
     private toast: ToastService,
-   private alertCtrl: AlertController) {
+   private alertCtrl: AlertController,
+ public loading: LoadingController) {
   }
 
   ionViewDidLoad() {
@@ -52,20 +54,26 @@ export class AddShoppingItemPage {
 
 
   addItem(item: Item) {
-    alert("Stat function");
-    this.pictures.putString(this.base64Image, 'data_url').then((savedPicture) =>{
-      this.pictures.getDownloadURL().then((url) => {this.urldownload = url;
-      this.shopping.addItem({
-        name: this.nameProduct,
-        quantity: this.quantityProduct,
-        price: this.priceProduct,
-        image: this.urldownload}).then(ref => {
-        this.toast.show(`${this.nameProduct} added!`);
-        this.navCtrl.setRoot('HomePage', { key: ref.key });
-      })})
-    }
+    let loader = this.loading.create({
+      content: 'Salvando Item...',
+    });
 
-  )
+    loader.present().then(() => {
+      this.pictures.putString(this.base64Image, 'data_url').then((savedPicture) =>{
+        this.pictures.getDownloadURL().then((url) => {this.urldownload = url;
+        this.shopping.addItem({
+          name: this.nameProduct,
+          quantity: this.quantityProduct,
+          price: this.priceProduct,
+          image: this.urldownload}).then(ref => {
+          loader.dismiss();
+          this.toast.show(`${this.nameProduct} added!`);
+          this.navCtrl.setRoot('HomePage', { key: ref.key });
+        })})
+      }
+    )
+    })
+
 
 
 
