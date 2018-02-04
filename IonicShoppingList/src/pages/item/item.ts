@@ -6,7 +6,7 @@ import { ShoppingListService } from './../../services/shopping-list/shopping-lis
 import { ToastService } from './../../services/toast/toast.service';
 
 /**
- * Generated class for the EditShoppingItemPage page.
+ * Generated class for the ItemPage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
@@ -14,10 +14,10 @@ import { ToastService } from './../../services/toast/toast.service';
 
 @IonicPage()
 @Component({
-  selector: 'page-edit-shopping-item',
-  templateUrl: 'edit-shopping-item.html',
+  selector: 'page-item',
+  templateUrl: 'item.html',
 })
-export class EditShoppingItemPage {
+export class ItemPage {
 
   item: Item;
   user: string;
@@ -29,26 +29,18 @@ export class EditShoppingItemPage {
     private toast: ToastService) {
   }
 
+  removeItem(item: Item, user: string) {
+    this.shopping.removeItem(item)
+      .then( () => {
+        this.toast.show(`${item.name} deleted!`);
+        this.navCtrl.setRoot('HomePage', {'user': user});
+      })
+  }
+
   ionViewWillLoad() {
     this.item = this.navParams.get('item');
     this.user = this.navParams.get('user');
   }
 
-  saveItem(item: Item, user: string) {
-    item.user = user;
-    this.shopping.editItem(item)
-      .then( () => {
-        this.toast.show(`${item.name} saved!`);
-        this.navCtrl.setRoot('HomePage', {'user': user});
-      });
-  }
-
-  removeItem(item: Item) {
-    this.shopping.removeItem(item)
-      .then( () => {
-        this.toast.show(`${item.name} deleted!`);
-        this.navCtrl.setRoot('HomePage');
-      })
-  }
 
 }

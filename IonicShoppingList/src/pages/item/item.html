@@ -22,23 +22,24 @@
               </ion-item>
 
   <ion-item>
-    <ion-label stacked>Nome do produto</ion-label>
-    <ion-input [(ngModel)]="item.name"></ion-input>
+    <ion-label stacked>Nome do produto: {{item.name}}</ion-label>
   </ion-item>
 
   <ion-item>
-    <ion-label stacked>Limite de quantidade (0 se não houver)</ion-label>
-    <ion-input type="number" [(ngModel)]="item.quantity"></ion-input>
+    <ion-label stacked>Limite de quantidade: {{item.quantity}}</ion-label>
   </ion-item>
 
   <ion-item>
-    <ion-label stacked>Preço unitário (R$)</ion-label>
-    <ion-input type="number" [(ngModel)]="item.price"  placeholder="EX: 2.50(dois reais e 50 centavos)"></ion-input>
+    <ion-label stacked>Preço unitário(R$): {{item.price}}</ion-label>
   </ion-item>
 
+  <p *ngIf=" item.user != user">Publicado por: {{ item.user }}</p>
 
 
-  <button ion-button block clear (click)="saveItem(item, user)">Atualizar</button>
+  <button ion-button block clear *ngIf=" item.user == user" navPush="EditShoppingItemPage"
+  [navParams]="{item: item, user: user}">Editar Item</button>
 
+  <button ion-button block clear *ngIf=" item.user == user" color="danger"
+  (click)="removeItem(item, user)">Deletar Item</button>
 
 </ion-content>

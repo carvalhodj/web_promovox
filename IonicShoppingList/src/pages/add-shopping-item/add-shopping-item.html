@@ -15,14 +15,10 @@
 <ion-content class="home">
   <ion-card>
     <ion-card-content>
-      Hello World, this is my camera app
-
-      <button ion-button (click)="takePhoto()">Take Photo</button>
-
-      Latest Picture:
-      <img src="{{ base64Image }}" *ngIf="base64Image"/>
+      <img style="width: 300px; height: 300px;" src="{{ base64Image }}" *ngIf="base64Image"/>
     </ion-card-content>
   </ion-card>
+  <button ion-button (click)="takePhoto()">Tirar foto do Produto</button>
 
   <ion-item>
     <ion-label>Nome do Produto</ion-label>
@@ -39,6 +35,6 @@
     <ion-input type="number" [(ngModel)]="priceProduct"></ion-input>
   </ion-item>
 
-  <button ion-button block clear (click)="addItem(item)">Confirmar</button>
+  <button ion-button block clear (click)="addItem(item, user)">Confirmar</button>
 
 </ion-content>

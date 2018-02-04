@@ -13,7 +13,7 @@ import { Item } from './../../models/item/item.model';
 export class HomePage {
 
   shoppingList$: Observable<Item[]>;
-  user = {} as User;
+  user: string;
 
 
   constructor(public navParams: NavParams ,navCtrl: NavController, private shopping: ShoppingListService) {

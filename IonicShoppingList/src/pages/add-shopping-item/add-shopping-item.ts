@@ -30,12 +30,14 @@ export class AddShoppingItemPage {
   public priceProduct: number;
   public quantityProduct: number;
   public pictures: firebase.storage.Reference;
+  user: string;
 
   item: Item = {
     name: '',
     quantity: 0,
     price: 0,
     image: "",
+    user: "",
   }
 
   constructor(private camera: Camera,
@@ -45,6 +47,7 @@ export class AddShoppingItemPage {
     private toast: ToastService,
    private alertCtrl: AlertController,
  public loading: LoadingController) {
+   this.user = this.navParams.get('user');
   }
 
   ionViewDidLoad() {
@@ -53,7 +56,7 @@ export class AddShoppingItemPage {
 
 
 
-  addItem(item: Item) {
+  addItem(item: Item, user: string) {
     let loader = this.loading.create({
       content: 'Salvando Item...',
     });
@@ -65,10 +68,11 @@ export class AddShoppingItemPage {
           name: this.nameProduct,
           quantity: this.quantityProduct,
           price: this.priceProduct,
-          image: this.urldownload}).then(ref => {
+          image: this.urldownload,
+        user: user}).then(ref => {
           loader.dismiss();
           this.toast.show(`${this.nameProduct} added!`);
-          this.navCtrl.setRoot('HomePage', { key: ref.key });
+          this.navCtrl.setRoot('HomePage', {'user': user});
         })})
       }
     )

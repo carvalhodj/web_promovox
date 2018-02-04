@@ -1,10 +1,10 @@
 <ion-header>
   <ion-navbar color="primary">
     <ion-title>
-      Lista geral de ofertas
+        Olá {{ user }}
     </ion-title>
       <ion-buttons end>
-          <button navPush="AddShoppingItemPage" ion-button>
+          <button navPush="AddShoppingItemPage" [navParams]="{user: user}" ion-button>
             <ion-icon name="add"></ion-icon>
           </button>
       </ion-buttons>
@@ -15,10 +15,11 @@
   <ion-searchbar (ionInput)="getItems($event)"></ion-searchbar>
   <ion-list>
     <ion-list-header>
-      Item
+      Lista geral de ofertas
     </ion-list-header>
     <ion-item *ngFor="let item of shoppingList$ | async" detail-push
-    navPush="EditShoppingItemPage" [navParams]="{item: item}">
+    navPush="ItemPage" [navParams]="{item: item, user: user}">
+
 
       <ion-thumbnail item-start>
         <img src="{{ item.image }}">
@@ -27,4 +28,5 @@
       <p>Quantidade: {{ item.quantity }} • R$ {{ item.price }}</p>
     </ion-item>
   </ion-list>
+
 </ion-content>
