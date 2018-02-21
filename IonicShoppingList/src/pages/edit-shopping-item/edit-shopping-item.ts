@@ -44,38 +44,39 @@ export class EditShoppingItemPage {
       this.initializeMarca();
   }
 
-  initializeCategoria(){
-    this.categorias = [
-        {id: 1, name: 'Melaka'},
-        {id: 2, name: 'Johor'},
-        {id: 3, name: 'Selangor'}
-    ];
-    }
 
-    initializeTipo(){
-    this.tipos = [
-        {id: 1, name: 'Alor Gajah', categoria_id: 1, categoria_name: 'Melaka'},
-        {id: 2, name: 'Jasin', categoria_id: 1, categoria_name: 'Melaka'},
-        {id: 3, name: 'Muar', categoria_id: 2, categoria_name: 'Johor'},
-        {id: 4, name: 'Segamat', categoria_id: 2, categoria_name: 'Johor'},
-        {id: 5, name: 'Shah Alam', categoria_id: 3, categoria_name: 'Selangor'},
-        {id: 7, name: 'Klang', categoria_id: 3, categoria_name: 'Selangor'}
-    ];
-    }
+    initializeCategoria(){
+      this.categorias = [
+          {id: 1, name: 'Alimentos'},
+          {id: 2, name: 'Eletrônicos'},
+          {id: 3, name: 'Produtos de limpeza'}
+      ];
+      }
 
-    initializeMarca(){
-    this.marcas = [
-        {id: 1, name: 'City of Alor Gajah 1', categoria_id: 1, tipo_id: 1},
-        {id: 2, name: 'City of Alor Gajah 2', categoria_id: 1, tipo_id: 1},
-        {id: 3, name: 'City of Jasin 1', categoria_id: 1, tipo_id: 2},
-        {id: 4, name: 'City of Muar 1', categoria_id: 2, tipo_id: 3},
-        {id: 5, name: 'City of Muar 2', categoria_id: 2, tipo_id: 3},
-        {id: 6, name: 'City of Segamat 1', categoria_id: 2, tipo_id: 4},
-        {id: 7, name: 'City of Shah Alam 1', categoria_id: 3, tipo_id: 5},
-        {id: 8, name: 'City of Klang 1', categoria_id: 3, tipo_id: 6},
-        {id: 9, name: 'City of Klang 2', categoria_id: 3, tipo_id: 6}
-    ];
-    }
+      initializeTipo(){
+      this.tipos = [
+          {id: 1, name: 'Feijão', categoria_id: 1, categoria_name: 'Alimentos'},
+          {id: 2, name: 'Arroz', categoria_id: 1, categoria_name: 'Alimentos'},
+          {id: 3, name: 'Creme dental', categoria_id: 3, categoria_name: 'Produtos de limpeza'},
+          {id: 4, name: 'Sabonete', categoria_id: 3, categoria_name: 'Produtos de limpeza'},
+          {id: 5, name: 'Mouse', categoria_id: 2, categoria_name: 'Eletrônicos'},
+          {id: 7, name: 'Monitor', categoria_id: 2, categoria_name: 'Eletrônicos'}
+      ];
+      }
+
+      initializeMarca(){
+      this.marcas = [
+          {id: 1, name: 'Tio João', categoria_id: 1, tipo_id: 1},
+          {id: 2, name: 'Carioca', categoria_id: 1, tipo_id: 2},
+          {id: 3, name: 'Turquesa', categoria_id: 1, tipo_id: 1},
+          {id: 4, name: 'Multilaser', categoria_id: 2, tipo_id: 5},
+          {id: 5, name: 'Logitech', categoria_id: 2, tipo_id: 5},
+          {id: 6, name: 'LG', categoria_id: 2, tipo_id: 7},
+          {id: 7, name: 'Sorriso', categoria_id: 3, tipo_id: 3},
+          {id: 8, name: 'Sensodyne', categoria_id: 3, tipo_id: 3},
+          {id: 9, name: 'Protex', categoria_id: 3, tipo_id: 4}
+      ];
+      }
 
     setTiposValues(sCategoria) {
         this.selectedTipos = this.tipos.filter(tipo => tipo.categoria_id == sCategoria.id)
