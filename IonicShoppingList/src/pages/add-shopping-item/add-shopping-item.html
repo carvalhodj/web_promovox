@@ -25,10 +25,25 @@
     <ion-input [(ngModel)]="nameProduct"></ion-input>
   </ion-item>
 
+
   <ion-item>
-    <ion-label>Limite de quantidade (0 se não houver)</ion-label>
-    <ion-input type="number" [(ngModel)]="quantityProduct"></ion-input>
-  </ion-item>
+         <ion-label>Categoria</ion-label>
+         <ion-select (ionChange)="setTiposValues(sCategoria)"[(ngModel)]="sCategoria">
+             <ion-option [value]="sCategoria" *ngFor="let sCategoria of categorias">{{sCategoria.name}} </ion-option>
+         </ion-select>
+     </ion-item>
+     <ion-item *ngIf="selectedTipos">
+        <ion-label>Tipo</ion-label>
+        <ion-select (ionChange)="setMarcaValues(sTipo)" [(ngModel)]="sTipo">
+            <ion-option [value]="sTipo" *ngFor="let sTipo of selectedTipos">{{sTipo.name}}</ion-option>
+        </ion-select>
+     </ion-item>
+     <ion-item *ngIf="selectedMarcas">
+        <ion-label>Marca</ion-label>
+        <ion-select [(ngModel)]="sMarca">
+            <ion-option [value]="sMarca" *ngFor="let sMarca of selectedMarcas">{{sMarca.name}}</ion-option>
+        </ion-select>
+     </ion-item>
 
   <ion-item>
     <ion-label>Preço unitário (R$)</ion-label>
